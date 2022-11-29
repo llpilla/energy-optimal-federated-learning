@@ -1,7 +1,7 @@
 # Energy-optimal Federated Learning
 
 This repository contains the prototypes of five different scheduling algorithms able to minimize the energy consumed on heterogeneous devices during a Federated Learning training round.
-The algorithms are described in a preprint available in [HAL](https://hal.archives-ouvertes.fr/hal-0377549) and [arXiv](https://arxiv.org/abs/2209.0621).
+The algorithms are described in a preprint available in [HAL](https://hal.archives-ouvertes.fr/hal-03775491) and [arXiv](https://arxiv.org/abs/2209.0621).
 This repository was built based on a [previous codebase](https://github.com/llpilla/olar-federated-learning) used to simulate scheduling algorithms that try to minimize the duration of training rounds.
 
 The Python 3 and Bash scripts can be used to test scheduling algorithms in different scenarios with variations in the number of tasks, resources, kinds of resources (cost functions), lower and upper limits of tasks per resources, etc.
