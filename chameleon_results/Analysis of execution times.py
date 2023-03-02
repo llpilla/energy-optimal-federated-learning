@@ -41,7 +41,8 @@ schedulers = ['(MC)2MKP', 'MarIn', 'MarCo', 'MarDecUn', 'MarDec', 'FedAvg']
 
 # reads the result file
 results = pd.read_csv('results_of_timing_with_fixed_resources.csv', comment='#')
-print('- Results with increasing numbers of tasks')
+print('Execution time analysis')
+print('- Results with increasing numbers of tasks (fixed resources)')
 results.head(9)
 
 
@@ -66,7 +67,7 @@ results['avg'] = results['Time']*1000000/5
 # In[ ]:
 
 
-print('-- Generating figures')
+print('-- Generating figure fig-time-fixed-resources.pdf for the results with a fixed number of resources')
 
 # Sets figure parameters
 plt.figure(figsize=(6,5))
@@ -105,14 +106,14 @@ plt.savefig("fig-time-fixed-resources.pdf", bbox_inches='tight')
 # In[ ]:
 
 
-print('- Result description')
+print('- Result description: data distribution for 200 and 2000 tasks with different schedulers')
 for sched in schedulers:
     for tasks in (200, 2000):
         res = results[(results['Scheduler'] == sched) &
                       (results['Tasks'] == tasks)].avg
         print(f'Scheduler {sched} with {tasks} tasks')
         print(res.describe())
-        print('\n')
+        print(' ')
 
 
 # ### Distributions of the results
@@ -121,6 +122,7 @@ for sched in schedulers:
 
 
 print('-- Checking the distribution of origin for different results')
+print('   Kolmogorov-Smirnov test results with p-values < 0.05 mean that the results do not follow normal distributions')
 # Checking all schedulers
 np.random.seed(2022)
 for sched in schedulers:
@@ -137,6 +139,8 @@ for sched in schedulers:
 
 # Statistical comparison between MarCo and MarDecUn
 # Using Mann-Whitney U test as results do not follow normal distributions some times (p-values < 0.05)
+print(' ')
+print('-- Comparing MarCo and MarDecUn. p-values < 0.05 indicate that the algorithms perform differently')
 for tasks in range(200,2001,200):
     marco = list(results[(results['Scheduler'] == 'MarCo') &
                          (results['Tasks'] == tasks)].avg)
@@ -155,7 +159,7 @@ for tasks in range(200,2001,200):
 
 # reads the result file
 results = pd.read_csv('results_of_timing_with_fixed_tasks.csv', comment='#')
-print('- Results with increasing numbers of resources')
+print('\n- Results with increasing numbers of resources (fixed tasks)')
 results.head(9)
 
 
@@ -180,7 +184,7 @@ results['avg'] = results['Time']*1000000/5
 # In[ ]:
 
 
-print('-- Generating figures')
+print('-- Generating figure fig-time-fixed-tasks.pdf for the results with a fixed number of tasks')
 
 # Sets figure parameters
 plt.figure(figsize=(6,5))
@@ -219,14 +223,14 @@ plt.savefig("fig-time-fixed-tasks.pdf", bbox_inches='tight')
 # In[ ]:
 
 
-print('- Result description')
+print('- Result description: data distribution for 20 and 80 resources with different schedulers')
 for sched in schedulers:
     for resources in (20, 80):
         res = results[(results['Scheduler'] == sched) &
                       (results['Resources'] == resources)].avg
         print(f'Scheduler {sched} with {resources} resources')
         print(res.describe())
-        print('\n')
+        print(' ')
 
 
 # ### Distributions of the results
@@ -235,6 +239,7 @@ for sched in schedulers:
 
 
 print('-- Checking the distribution of origin for different results')
+print('   Kolmogorov-Smirnov test results with p-values < 0.05 mean that the results do not follow normal distributions')
 # Checking all schedulers
 np.random.seed(2022)
 for sched in schedulers:
@@ -251,6 +256,8 @@ for sched in schedulers:
 
 # Statistical comparison between MarCo and MarDecUn
 # Using Mann-Whitney U test as results do not follow normal distributions some times (p-values < 0.05)
+print(' ')
+print('-- Comparing MarCo and MarDecUn. p-values < 0.05 indicate that the algorithms perform differently')
 for resources in range(20,81,20):
     marco = list(results[(results['Scheduler'] == 'MarCo') &
                          (results['Resources'] == resources)].avg)
@@ -258,6 +265,7 @@ for resources in range(20,81,20):
                          (results['Resources'] == resources)].avg)
     print(f'Mann-Whitney U test - ({resources} resources).')
     print(stats.mannwhitneyu(marco, mardec, alternative='two-sided'))
+print('\n')    
 
 
 # MarCo and MarDec perform differently (p-values < 0.05).

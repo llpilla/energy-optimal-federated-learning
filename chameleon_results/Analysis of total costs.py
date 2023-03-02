@@ -39,6 +39,7 @@ schedulers = ['(MC)2MKP', 'MarIn', 'MarCo', 'MarDec', 'FedAvg']
 
 # reads the result file
 results = pd.read_csv('results_with_random_costs.csv', comment='#')
+print('Total cost analysis')
 print('- Results with random costs')
 results.head(9)
 
@@ -54,7 +55,7 @@ print(f'-- Number of results: {len(results)} (expected: {expected_number})')
 # In[ ]:
 
 
-print('-- Generating figures')
+print('-- Generating figures fig-random-10.pdf and fig-random-100.pdf')
 
 # Sets figure parameters
 plt.figure(figsize=(6,5))
@@ -115,6 +116,7 @@ plt.savefig("fig-random-100.pdf", bbox_inches='tight')
 
 
 # Checking how many times other schedulers meet the performance of (MC)^2MKP
+print('-- Checking how many times other schedulers meet the performance of (MC)2MKP')
 mc2mkp_cost = results[results['Scheduler'] == '(MC)2MKP']['Total Cost'].reset_index(drop=True)
 for scheduler in schedulers[1:]:
     other_cost = results[results['Scheduler'] == scheduler]['Total Cost'].reset_index(drop=True)
@@ -133,7 +135,7 @@ for scheduler in schedulers[1:]:
 
 # reads the result file
 results = pd.read_csv('results_with_increasing_marginal_costs.csv', comment='#')
-print('- Results with increasing marginal costs')
+print('\n- Results with increasing marginal costs')
 results.head(9)
 
 
@@ -146,7 +148,7 @@ print(f'-- Number of results: {len(results)} (expected: {expected_number})')
 # In[ ]:
 
 
-print('-- Generating figures')
+print('-- Generating figures fig-increasing-10.pdf and fig-increasing-100.pdf')
 
 # Sets figure parameters
 plt.figure(figsize=(6,5))
@@ -209,6 +211,7 @@ plt.savefig("fig-increasing-100.pdf", bbox_inches='tight')
 
 
 # Checking how many times other schedulers meet the performance of (MC)^2MKP
+print('-- Checking how many times other schedulers meet the performance of (MC)2MKP')
 mc2mkp_cost = results[results['Scheduler'] == '(MC)2MKP']['Total Cost'].reset_index(drop=True)
 for scheduler in schedulers[1:]:
     other_cost = results[results['Scheduler'] == scheduler]['Total Cost'].reset_index(drop=True)
@@ -227,7 +230,7 @@ for scheduler in schedulers[1:]:
 
 # reads the result file
 results = pd.read_csv('results_with_constant_marginal_costs.csv', comment='#')
-print('- Results with constant marginal costs')
+print('\n- Results with constant marginal costs')
 results.head(9)
 
 
@@ -240,7 +243,7 @@ print(f'-- Number of results: {len(results)} (expected: {expected_number})')
 # In[ ]:
 
 
-print('-- Generating figures')
+print('-- Generating figures fig-constant-10.pdf and fig-constant-100.pdf')
 
 # Sets figure parameters
 plt.figure(figsize=(6,5))
@@ -303,6 +306,7 @@ plt.savefig("fig-constant-100.pdf", bbox_inches='tight')
 
 
 # Checking how many times other schedulers meet the performance of (MC)^2MKP
+print('-- Checking how many times other schedulers meet the performance of (MC)2MKP')
 mc2mkp_cost = results[results['Scheduler'] == '(MC)2MKP']['Total Cost'].reset_index(drop=True)
 for scheduler in schedulers[1:]:
     other_cost = results[results['Scheduler'] == scheduler]['Total Cost'].reset_index(drop=True)
@@ -321,7 +325,7 @@ for scheduler in schedulers[1:]:
 
 # reads the result file
 results = pd.read_csv('results_with_decreasing_marginal_costs.csv', comment='#')
-print('- Results with decreasing marginal costs')
+print('\n- Results with decreasing marginal costs')
 results.head(9)
 
 
@@ -334,7 +338,7 @@ print(f'-- Number of results: {len(results)} (expected: {expected_number})')
 # In[ ]:
 
 
-print('-- Generating figures')
+print('-- Generating figures fig-decreasing-10.pdf, fig-decreasing-100.pdf, and fig-decreasing-100-zoom.pdf')
 
 # Sets figure parameters
 plt.figure(figsize=(6,5))
@@ -427,6 +431,7 @@ plt.savefig("fig-decreasing-100-zoom.pdf", bbox_inches='tight')
 
 
 # Checking how many times other schedulers meet the performance of (MC)^2MKP
+print('-- Checking how many times other schedulers meet the performance of (MC)2MKP')
 mc2mkp_cost = results[results['Scheduler'] == '(MC)2MKP']['Total Cost'].reset_index(drop=True)
 for scheduler in schedulers[1:]:
     other_cost = results[results['Scheduler'] == scheduler]['Total Cost'].reset_index(drop=True)
@@ -445,7 +450,7 @@ for scheduler in schedulers[1:]:
 
 # reads the result file
 results = pd.read_csv('results_with_constant_marginal_costs_no_upper_limit.csv', comment='#')
-print('- Results with constant marginal costs and no upper limits')
+print('\n- Results with constant marginal costs and no upper limits')
 results.head(9)
 
 
@@ -458,7 +463,7 @@ print(f'-- Number of results: {len(results)} (expected: {expected_number})')
 # In[ ]:
 
 
-print('-- Generating figures')
+print('-- Generating figures fig-constant-10-no-u.pdf and fig-constant-100-no-u.pdf')
 
 # Sets figure parameters
 plt.figure(figsize=(6,5))
@@ -521,6 +526,7 @@ plt.savefig("fig-constant-100-no-u.pdf", bbox_inches='tight')
 
 
 # Checking how many times other schedulers meet the performance of (MC)^2MKP
+print('-- Checking how many times other schedulers meet the performance of (MC)2MKP')
 mc2mkp_cost = results[results['Scheduler'] == '(MC)2MKP']['Total Cost'].reset_index(drop=True)
 for scheduler in ['MarIn', 'MarCo', 'MarDecUn', 'FedAvg']:
     other_cost = results[results['Scheduler'] == scheduler]['Total Cost'].reset_index(drop=True)
